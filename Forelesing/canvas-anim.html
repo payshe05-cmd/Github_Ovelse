@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Workshop Game</title>
+    <link href="style.css" rel="stylesheet" media="screen" />
+    <link rel="apple-touch-icon" sizes="180x180" href="meta/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="meta/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="meta/favicon-16x16.png">
+    <link rel="manifest" href="meta/site.webmanifest">
+    <link rel="mask-icon" href="meta/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+    <header>
+        <section id="player">
+            <ul>
+                <li><img src="icons/shield.svg"> <span id="playerName"></span></li>
+                <li><img src="icons/energydrink.svg" title="energy"> <span id="energy">3</span></li>
+                <li><img src="icons/notebook.svg"> <span id="notebookItems">0</span></li>
+                <li><img src="icons/solution.svg"> <span id="points">0</span> poeng</li>
+                <li><img src="icons/clock.svg"> <span id="duration">0</span></li>
+            </ul>
+        </section>
+        <img src="icons/c3_logo.svg" alt="Code Concept Collector" />
+        <nav>
+            <button id="notebookToggler"><img src="icons/notebook.svg" />Åpne kladdeboka <span class="shortcut">n</span></button>
+            <button id="infoToggler">Info / Hvordan spille <span class="shortcut">i</span></button>
+        </nav>
+    </header>
+    <main>
+        
+        <section id="notebook">
+            <div id="notebook-page">
+                
+                <h2>Notater</h2>
+                <table>
+                    <tr>
+                        <td><img src="icons/variable.svg" alt="" /></td>
+                        <td>variabler</td>
+                        <td><span id="varibales">0</span></td>
+                    </tr>
+                    <tr>
+                        <td><img src="icons/array.svg" alt="" /></td>
+                        <td>arrayer</td>
+                        <td><span id="array">0</span></td>
+                    </tr>
+                    <tr>
+                        <td><img src="icons/loop.svg" alt="" /></td>
+                        <td>løkker</td>
+                        <td><span id="loops">0</span></td>
+                    </tr>
+                    <tr>
+                        <td><img src="icons/function.svg" alt="" /></td>
+                        <td>funksjoner</td>
+                        <td><span id="function">0</span></td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+    </main>
+     <script>
+        //PREPARE GAME CONFIG AND VARIABLES
+        //TODO: config
+
+
+        const gameConfig={
+
+            player:"",
+            energy: 5,
+            points: 10,
+            duration: 138,
+        }
+       
+        //TODO: notebook
+        const notebook = {
+            varibales :2,
+            arrays :4,
+            loops :3,
+            function :7,
+        }
+
+        
+
+        //TODO: print playerinfo to HTML
+        //Vi kan  lagre HTML-elemnter i variabler for lettere testing/kontroll i logg.
+        let playernameHTML = document.getElementById("playername")
+
+        if(gameConfig.player === ""){
+            document.getElementById("playername").innerHTML = "Waiting for player..."
+        } 
+
+        //Vi kan  lagre HTML-elemnter i variabler for lettere testing/kontroll i logg.
+        doucment.getElementById("playername").innerHTML = gameConfig.player
+        document.getElementById("energy").innerHTML = gameConfig.energy
+        document.getElementById("points").innerHTML = gameConfig.points
+        document.getElementById("duration").innerHTML = gameConfig.duration
+        
+        //TODO: print notebook info to HTML
+
+        document.getElementById("varibales").innerHTML = notebook.varibales
+        document.getElementById("arrays").innerHTML = notebook.arrays
+        document.getElementById("loops").innerHTML = notebook.loops
+        document.getElementById("function").innerHTML = notebook.function
+
+
+        //(BONUS) TODO: function for all prints
+        
+    </script>
+</body>
+</html>
