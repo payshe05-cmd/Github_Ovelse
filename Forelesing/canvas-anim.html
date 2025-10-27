@@ -29,14 +29,14 @@
             speedY: speed,
         }
 
-        const paddle1 = {
+        const paddle = {
             x: 100,
             y: 100,
             w: 50,
             h: 200
         }
 
-        requestAnimationFrame = window.requestAnimationFrame ||
+        const animate = window.requestAnimationFrame ||
         window.msRequestAnimationFrame ||
         window.mozRequestAnimationFrame ||
         window.webkitRequestAnimationFrame
@@ -45,26 +45,44 @@
 
             //Kollisjonsdeteksjon
             //Vegger og tak
-            ball.x + ball.radius >= canvas.width ? ball.speedX = ball.speedX * -1 : null
-            ball.x - ball.radius <= 0 ? ball.speedX = ball.speedX * -1 : null
-
-            ball.y + ball.radius >= canvas.height ? ball.speedY = ball.speedY * -1 : null
-            ball.y - ball.radius <= 0 ? ball.speedY = ball.speedY * -1 : null
-
-            //Andre elementer
-            //if(ball.x <= paddle.x && ball.y >= paddel.y && ball.y <= paddle.y){
-            //    ball.speedX *= -1
-            //}
+            ball.x + ball.radius >= canvas.width || ball.x - ball.radius <= 0
+                ball.speedX = ball.speedX * -1
             
-            //høyre side av firkant
-            if(ball.x <= paddel.x + paddle.w && ball.y <= paddle.h){
+
+            ball.y + ball.radius >= canvas.height || ball.y - ball.radius <= 0
+                ball.speedY = ball.speedY * -1
+            
+
+            if(ball.x <= paddle.x + paddle.w && ball.y <= paddle.y + paddle.h){
+               ball.speedX *= -1
+            }
+
+            if(ball.x <= paddle.x && ball.y <= paddle.y  + paddle.h){
                 ball.speedX *= -1
             }
 
+            if(ball.y <= paddle.y + paddle.h && ball.x <= paddle.x + paddle.w){
+                ball.speedY *= -1
+            }
+
+            if(ball.y <= paddle.y && ball.x <= paddle.x + paddle.w){
+                ball.speedY *= -1
+            }
+
+
+
+            
+            //høyre side av firkant
+            if (
+                ball.x - ball.radius <= paddle.x + paddle.w &&
+                ball.y >= paddle.y &&
+                ball.y <= paddle.y + paddle.h
+            ) {
+                ball.speedX *= -1
+            }
 
             ball.x += ball.speedX
             ball.y += ball.speedY
-
 
             //Tegn ballen
             ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -76,11 +94,11 @@
 
             ctx.beginPath()
             ctx.fillStyle = "black"
-            ctx.rect(paddle1.x, paddle1.y, paddle1.w, paddle1.h)
+            ctx.rect(paddle.x, paddle.y, paddle.w, paddle.h)
             ctx.fill()
             ctx.closePath()
 
-            requestAnimationFrame(draw)
+            animate(draw)
         }
 
         draw()
